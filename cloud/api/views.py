@@ -18,6 +18,9 @@ class RegistroApi(View):
             if not cargo:
                 return JsonResponse({'erro': 'O campo cargo é obrigatório!'}, status=400)
             
+            if cargo != 'Visitante' and cargo != 'Bolsista':
+                return JsonResponse({'erro': 'O campo cargo deve ser "Visitante" ou "Bolsista"!'}, status=400)
+            
             # Cria um novo registro
             Registro.objects.create(cargo=cargo)
 
