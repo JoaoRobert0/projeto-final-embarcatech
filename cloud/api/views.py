@@ -6,6 +6,11 @@ from django.http import JsonResponse
 from main.models import Registro
 
 class RegistroApi(View):
+    def get(self, request):
+        return JsonResponse({
+            'mensagem': 'Para criar um registro, envie uma requisição POST, em .../api/registro, com um JSON contendo o campo "cargo" com o valor "Visitante" ou "Bolsista".'
+        })
+    
     def post(self, request):
         try:
             # Obtém o JSON enviado na requisição
