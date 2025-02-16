@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -38,17 +39,57 @@
         tr:hover {
             background-color: #ddd;
         }
-        .cargo {
-            color: #ff0000;
+
+        .container-cards {
+            display: flex;
+            width: 100%;
         }
-        .data-hora {
-            color: #008000;
+
+        .card {
+            display: flex;
+            width: 200px;
+            flex-direction: column;
+            border: 3px solid grey;
+            margin-right: 5px;
+        }
+
+        .card .titulo {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            font-size: 18px;
+            color: white;
+        }
+
+        .card .valor {
+            color: #4CAF50;
+            font-size: 24px;
+            padding: 10px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>CNAT MAKER</h1>
+        <a href="https://maker.cnat.ifrn.edu.br/">
+            <img src="{% static 'logo-cnat-maker.png' %}" alt="CNAT Maker">
+        </a>
+        <h1>Dashboard</h1>
+        <div class="container-cards">
+            <div class="card">
+                <span class="titulo"><strong>Total Geral</strong></span>
+                <span class="valor"><strong>{{ total }}</strong></span>
+            </div>
+            <div class="card">
+                <span class="titulo"><strong>Total de Visitantes</strong></span>
+                <span class="valor"><strong>{{ visitante_qtd }}</strong></span>
+            </div>
+            <div class="card">
+                <span class="titulo"><strong>Total de Bolsistas</strong></span>
+                <span class="valor"><strong>{{ bolsista_qtd }}</strong></span>
+            </div>
+        </div>
+        <h1>Presenças registradas</h1>
         <table>
             <thead>
                 <tr>
@@ -59,12 +100,15 @@
             <tbody>
                 {% for registro in registros %}
                     <tr>
-                        <td class="cargo">{{ registro.cargo }}</td>
+                        <td class="cargo"><strong>{{ registro.cargo }}<strong></td>
                         <td class="data-hora">{{ registro.data_hora }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <footer style="text-align: center; margin-top: 20px;">
+            <p>Desenvolvido por: João Roberto Chaves Camboim</p>
+        </footer>
     </div>
 </body>
 </html>
